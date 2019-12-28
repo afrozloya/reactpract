@@ -22,7 +22,9 @@ import './index.css';
 // import App from './App21MAterial1'
 // import App from './App22Material2'
 // import App from './Login'
-import App from './Contact'
+// import App from './Contact'
+// import App from './App23Try'
+import App from './Register'
 
 
 import * as serviceWorker from './serviceWorker';
