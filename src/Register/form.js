@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Select, MenuItem } from '@material-ui/core';
+import MyImgField from './MyImgField';
+// import MyImgField from './MyImgField3';
+
 
 
 export default function Form(props) {
+
+  const [upImg, setupImg] = useState(undefined)
 
   const {
     values,
@@ -24,6 +29,7 @@ export default function Form(props) {
     setFieldTouched(name, true, false);
   };
 
+
   const onSubmitHandler = (e) => {
       e.preventDefault()
       console.log(values)
@@ -39,11 +45,16 @@ export default function Form(props) {
     marginTop: '30px',
   }
 
+  const onDropHandler = (files) => {
+    setupImg(files)
+    console.log(files)
+  }
+
   return (
     <Container style={mybg3} component="main" maxWidth="sm">
       <div>
         <h1>Contact Information!</h1>
-        <form  onSubmit={onSubmitHandler}  noValidate>
+        <form encType="multipart/form-data"  onSubmit={onSubmitHandler}  noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -191,6 +202,7 @@ export default function Form(props) {
           <MenuItem value={"Female"}>Female</MenuItem>
           </TextField> 
 
+          {/* <MyImgField onDrop={onDropHandler}/> */}
 
           {/* <TextField
             defaultValue=""
@@ -201,14 +213,17 @@ export default function Form(props) {
             type="file"
             id="upload_img1"
             name="upload_img1"
+            onChange={(event) => {
+              setFieldValue("file", event.currentTarget.files[0]);
+            }}
             // label="Please Upload Image"
             helperText={touched.upload_img1 ? errors.upload_img1 : ""}
             error={touched.upload_img1 && Boolean(errors.upload_img1)}
             value={values.upload_img1}
-            onChange={change.bind(null, "upload_img1")}
+            // onChange={change.bind(null, "upload_img1")}
 
-          />
- */}
+          /> */}
+
 
 
           <Button

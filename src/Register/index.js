@@ -12,9 +12,10 @@ class IndexForm extends Component {
    this.state = {};
  }
 
+
  render() {
 
-    const values = { uname: "", email:"",  phoneno:"",  password:"",  cpassword:"" , age: "",  address:"",  gender:"", upload_img1: undefined };
+    const values = { uname: "", email:"",  phoneno:"",  password:"",  cpassword:"" , age: "",  address:"",  gender:"" };
 
     const validationSchema = Yup.object({
         uname: Yup.string("Enter your name")
