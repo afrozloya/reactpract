@@ -14,28 +14,17 @@ export default class FilterableProductTable extends Component {
             stockedOnly: stockedOnly
         }
         this.setState(newProperty)
-        let newState = {...this.state, ...newProperty};
-        this.updateData(newState);
     }
     onSearchChanged = (si) => {
         let newProperty = {
             si: si
         };
         this.setState(newProperty)
-        let newState = {...this.state, ...newProperty};
-        this.updateData(newState);
     }
 
-    // componentDidUpdate(){
-    //     this.updateData();
-    // }
 
-    // shouldComponentUpdate(nextProps, nextState, nextContext) {
-    //      return nextState.si !== this.state.si || nextState.stockedOnly !== this.state.stockedOnly
-    // }
-
-    updateData = (prevState) => {
-        // let prevState = this.state;
+    updateData = () => {
+        let prevState = this.state;
         let showData2 = dummyData;
         if(prevState.stockedOnly) {
             showData2 = dummyData.filter((row)=>{
@@ -48,30 +37,20 @@ export default class FilterableProductTable extends Component {
                 return row.name.search(re) !== -1
             })    
         }
-        this.setState({
-            showData: showData2
-        })
+        return showData;
+        // this.setState({
+        //     showData: showData2
+        // })
     }
-
-    // onSearchChanged = (si) => {
-    //     let showData2 = this.state.showData;
-    //     if(stockedOnly) {
-    //         showData2 = dummyData.filter((row)=>{
-    //             return row.stocked
-    //         })    
-    //     }
-    //     this.setState({
-    //         showData: showData2
-    //     })
-    // }
 
     render(){
         // console.log(dummyData)
+        let showdata = this.updateData();
         return (        
             <div>
                 <h1>My Table</h1>
                 <SearchBar onSearchChanged={this.onSearchChanged} onStockedChanged={this.onStockedChanged} />
-                <ProductTable showdata={this.state.showData} />
+                <ProductTable showdata={showdata} />
             </div>
         )    
     }
